@@ -4,7 +4,7 @@ import type { NextAuthOptions } from "next-auth";
 
 const MINUTE = 60;
 const HOUR = 60 * MINUTE;
-const SessionTime = process.env.SESSION_TIME * HOUR; // .30 hour
+const SessionTime = process.env.SESSION_TIME * HOUR;
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -13,12 +13,11 @@ export const authOptions: NextAuthOptions = {
       credentials: {},
       async authorize(credentials, req) {
         
+        // perform credentials validation
         console.log({ credentials });
 
         const user = {
-            name: "test",
-            email: "test@test.com",
-            password: "test"
+            name: "test"
         };
 
         console.log({ user });
@@ -39,7 +38,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       return { ...token, ...user };
     },
-    async session({ session, token, user }) {
+    async session({ session, token }) {
       session.user = token;
       return session;
     },

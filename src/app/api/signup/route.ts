@@ -4,7 +4,7 @@ export async function POST(req) {
   try {
     const { name, email, password } = await req.json();
 
-    // sign up API call
+    // perform sign up API call
 
     return NextResponse.json({ message: "User has successfully signed up." }, { status: 201 });
   } catch (error) {
